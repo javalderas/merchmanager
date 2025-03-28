@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: merchdb
+      POSTGRES_USER: merch
+      POSTGRES_PASSWORD: merch
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init-data:/docker-entrypoint-initdb.d
+
+  app:
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/merchdb
+      SPRING_DATASOURCE_USERNAME: merch
+      SPRING_DATASOURCE_PASSWORD: merch
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
