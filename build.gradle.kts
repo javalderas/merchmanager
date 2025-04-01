@@ -23,7 +23,10 @@ dependencies {
     implementation("org.postgresql:postgresql")
     implementation("io.arrow-kt:arrow-core:1.2.0")
 
+
+    runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -34,4 +37,12 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.bootJar {
+    archiveFileName.set("app.jar") // ✅ nombre fijo y claro
+}
+
+tasks.jar {
+    enabled = false // ❌ desactiva el plain jar que no usamos
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.reinodehades.merchmanager.application.CorsIntegrationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-04-01T01:00:59" hostname="Juans-MacBook-Pro.local" time="0.766">
+  <properties/>
+  <testcase name="CORS preflight request should be allowed()" classname="com.reinodehades.merchmanager.application.CorsIntegrationTest" time="0.766"/>
+  <system-out><![CDATA[03:00:54.673 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.reinodehades.merchmanager.application.CorsIntegrationTest]: CorsIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+03:00:54.794 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.reinodehades.merchmanager.MerchStockManagerApplication for test class com.reinodehades.merchmanager.application.CorsIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2025-04-01T03:00:55.181+02:00  INFO 43959 --- [    Test worker] c.r.m.application.CorsIntegrationTest    : Starting CorsIntegrationTest using Java 17.0.14 with PID 43959 (started by juanantonio in /Users/juanantonio/JobWork/reino-merech/merch-backend)
+2025-04-01T03:00:55.183+02:00  INFO 43959 --- [    Test worker] c.r.m.application.CorsIntegrationTest    : The following 1 profile is active: "test"
+2025-04-01T03:00:56.298+02:00  INFO 43959 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-01T03:00:56.366+02:00  INFO 43959 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 3 JPA repository interfaces.
+2025-04-01T03:00:56.856+02:00  INFO 43959 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-01T03:00:56.914+02:00  INFO 43959 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.2.Final
+2025-04-01T03:00:56.916+02:00  INFO 43959 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2025-04-01T03:00:57.096+02:00  INFO 43959 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2025-04-01T03:00:57.254+02:00  INFO 43959 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-01T03:00:57.270+02:00  INFO 43959 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-01T03:00:57.458+02:00  INFO 43959 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-04-01T03:00:57.460+02:00  INFO 43959 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-01T03:00:57.483+02:00  INFO 43959 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.H2Dialect, version: 2.1.214
+2025-04-01T03:00:57.686+02:00  INFO 43959 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2025-04-01T03:00:58.245+02:00  INFO 43959 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-04-01T03:00:58.289+02:00  INFO 43959 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2025-04-01T03:00:58.292+02:00  INFO 43959 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-01T03:00:59.065+02:00  WARN 43959 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-01T03:00:59.441+02:00  INFO 43959 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@655875bb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6ad036d6, org.springframework.security.web.context.SecurityContextHolderFilter@35ffe3ac, org.springframework.security.web.header.HeaderWriterFilter@feb57b4, org.springframework.web.filter.CorsFilter@1e9afe4e, org.springframework.security.web.authentication.logout.LogoutFilter@56c39949, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@16c3388e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e674698, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7bb996e0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6b72c62, org.springframework.security.web.access.ExceptionTranslationFilter@77a6aa9f, org.springframework.security.web.access.intercept.AuthorizationFilter@6101fd7d]
+2025-04-01T03:00:59.749+02:00  INFO 43959 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-04-01T03:00:59.750+02:00  INFO 43959 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-04-01T03:00:59.751+02:00  INFO 43959 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2025-04-01T03:00:59.782+02:00  INFO 43959 --- [    Test worker] c.r.m.application.CorsIntegrationTest    : Started CorsIntegrationTest in 4.851 seconds (process running for 6.166)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

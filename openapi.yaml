@@ -1,0 +1,190 @@
+openapi: 3.0.3
+info:
+  title: Inventory API
+  version: 1.0.0
+  description: API para consultar disponibilidad de productos, vender unidades y agregar stock.
+servers:
+  - url: https://api.tuempresa.com
+    description: Servidor de producción
+  - url: http://localhost:8080
+    description: Servidor local
+
+paths:
+  /api/v1/inventory/available:
+    get:
+      summary: Obtener productos disponibles
+      description: Retorna todos los productos cuyo stock es mayor a 0.
+      operationId: getAvailableProducts
+      tags:
+        - Inventario
+      responses:
+        '200':
+          description: Lista de productos disponibles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+              examples:
+                ejemplo:
+                  summary: Ejemplo de productos disponibles
+                  value:
+                    - id: 1
+                      name: "Camiseta"
+                      stock: 15
+                    - id: 2
+                      name: "Zapatos"
+                      stock: 8
+
+  /api/v1/inventory/{id}/sell:
+    post:
+      summary: Vender producto
+      description: Vende una cantidad específica de un producto por ID.
+      operationId: sellProduct
+      tags:
+        - Inventario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: integer
+        - name: qty
+          in: query
+          required: true
+          description: Cantidad a vender
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: Venta realizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                vendido:
+                  summary: Producto actualizado tras la venta
+                  value:
+                    id: 1
+                    name: "Camiseta"
+                    stock: 14
+        '400':
+          description: Error en la solicitud (stock insuficiente o parámetros inválidos)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                stockInsuficiente:
+                  summary: No hay stock suficiente
+                  value:
+                    code: 400
+                    message: "Stock insuficiente para realizar la venta."
+        '404':
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                noEncontrado:
+                  summary: Producto no existe
+                  value:
+                    code: 404
+                    message: "Producto con ID 99 no encontrado."
+
+  /api/v1/inventory/{id}/add:
+    post:
+      summary: Agregar stock
+      description: Agrega una cantidad específica de unidades al stock de un producto por ID.
+      operationId: addStock
+      tags:
+        - Inventario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: integer
+        - name: qty
+          in: query
+          required: true
+          description: Cantidad a agregar
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: Stock agregado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                actualizado:
+                  summary: Producto actualizado tras agregar stock
+                  value:
+                    id: 1
+                    name: "Camiseta"
+                    stock: 20
+        '400':
+          description: Error en la solicitud (parámetros inválidos)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                cantidadInvalida:
+                  summary: Cantidad inválida
+                  value:
+                    code: 400
+                    message: "La cantidad debe ser mayor a cero."
+        '404':
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                noEncontrado:
+                  summary: Producto no existe
+                  value:
+                    code: 404
+                    message: "Producto con ID 42 no encontrado."
+
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - id
+        - name
+        - stock
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Camiseta"
+        stock:
+          type: integer
+          example: 10
+
+    ErrorResponse:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: "Mensaje de error claro y específico"

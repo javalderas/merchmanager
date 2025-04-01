@@ -5,7 +5,6 @@ import com.reinodehades.merchmanager.domain.repository.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.logging.Logger
 
@@ -27,13 +26,4 @@ class CustomUserDetailsService(
             .roles("USER") // Por ahora, sin roles complejos
             .build()
     }
-}
-
-fun main() {
-    val encoder = BCryptPasswordEncoder()
-    val pass = encoder.encode("admin123")
-    println(pass)
-    val encoder2 = BCryptPasswordEncoder()
-    println(encoder2.matches("admin123", "$2a$10$79eF9HtAsTD7SK9r2Os1y.J3RaToFR6gQKPZ08rftNjocdkZNhZgu")) // true
-
 }
